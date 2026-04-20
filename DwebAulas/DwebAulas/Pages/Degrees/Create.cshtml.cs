@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Aulas.Data.Model;
 using DwebAulas.Data;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.Build.Framework;
+
 
 namespace DwebAulas.Pages.Degrees
 {
@@ -46,7 +46,8 @@ namespace DwebAulas.Pages.Degrees
         public Degree Degree { get; set; } = default!;
         
         [BindProperty]
-        public IFormFile ImageLogo { get; set; }= default!;
+        [Required(ErrorMessage ="Por favor, selecione uma imagem PNG ou JPG.")]
+        public IFormFile? ImageLogo { get; set; }
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
