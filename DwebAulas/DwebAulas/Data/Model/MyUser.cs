@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aulas.Data.Model {
 
@@ -17,6 +18,7 @@ namespace Aulas.Data.Model {
       [StringLength(50)]
       [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
       [Display(Name = "Nome Completo")]
+      [RegularExpression(@"[A-ZÂÓÁÉÍÚ][a-zçãáàâäéèêëíìîïóòõôöúùûü '-]+", ErrorMessage="Deve introduzir um nome válido")]
       public string Name { get; set; } = "";
 
       /// <summary>
@@ -32,6 +34,7 @@ namespace Aulas.Data.Model {
       /// </summary>
       [Display(Name = "Telemóvel")]
       [StringLength(19)]
+      [RegularExpression(@"((\+)|(00)[0-9]{2,5})?[0-9]{6,12}", ErrorMessage ="O {0} deve conter apenas números e um sinal de mais")]
       public string? CellPhone { get; set; }
 
       /// <summary>
