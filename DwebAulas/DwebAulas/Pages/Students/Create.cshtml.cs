@@ -12,16 +12,17 @@ namespace DwebAulas.Pages.Students
 {
     public class CreateModel : PageModel
     {
-        private readonly DwebAulas.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CreateModel(DwebAulas.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["DegreeFK"] = new SelectList(_context.Degrees, "Id", "Name");
+            // lista de Degrees no student
+        ViewData["DegreeFK"] = new SelectList(_context.Degrees.OrderBy(d=>d.Name), "Id", "Name");
             return Page();
         }
 
@@ -33,6 +34,7 @@ namespace DwebAulas.Pages.Students
         {
             if (!ModelState.IsValid)
             {
+                // lista de opções para aparecer no dropdown a lista para degree
                 return Page();
             }
 
